@@ -8,7 +8,9 @@ import time
 app = Flask(__name__)
 
 API_KEY = "1234"
-AUDIO_FOLDER = "audio"
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+AUDIO_FOLDER = os.path.join(BASE_DIR, "audio")
 # ensure audio folder exists
 os.makedirs(AUDIO_FOLDER, exist_ok=True)
 
@@ -154,6 +156,8 @@ def upload_audio():
     # SAVE FILE
     with open(path, "wb") as f:
         f.write(wav_header + raw_audio)
+    print("Saved file:", path)
+    print("Exists:", os.path.exists(path))
 
     # ---------- TRANSCRIBE ----------
     text = "Voice note task"
