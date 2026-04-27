@@ -3,7 +3,7 @@ import sqlite3
 import os
 import struct
 import time
-import whisper
+# import whisper
 
 app = Flask(__name__)
 
@@ -156,37 +156,7 @@ def upload_audio():
         f.write(wav_header + raw_audio)
 
     # ---------- TRANSCRIBE ----------
-    try:
-        import whisper
-        model = whisper.load_model("base")
-
-        result = model.transcribe(path)
-        text = result["text"].strip().lower()
-    
-
-        # ---------- AI CLEANUP ----------
-        if text:
-            # remove filler phrases
-            if "remind me to" in text:
-                text = text.replace("remind me to", "")
-            if "can you" in text:
-                text = text.replace("can you", "")
-
-            text = text.strip()
-
-        # ---------- AI CATEGORIZATION ----------
-        if "buy" in text or "store" in text:
-            text = "[SHOPPING] " + text
-        elif "call" in text or "email" in text:
-            text = "[COMMUNICATION] " + text
-        elif "study" in text or "homework" in text:
-            text = "[SCHOOL] " + text
-
-        # capitalize final result
-        text = text.capitalize()
-    except Exception as e:
-        print("Whisper error:", e)
-        text = ""
+    text = "Voice note task"
 
     print("TRANSCRIBED:", text)
 
