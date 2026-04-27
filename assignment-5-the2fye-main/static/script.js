@@ -80,7 +80,7 @@ async function loadNotes() {
             <td>${note[1]}</td>
             <td>
                 <audio controls>
-                    <source src="/audio/${note[2]}" type="audio/wav">
+                    <source src="/audio/${note[2].replace("audio/", "")}" type="audio/wav">
                 </audio>
             </td>
         `;
