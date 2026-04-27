@@ -12,8 +12,6 @@ AUDIO_FOLDER = "audio"
 # ensure audio folder exists
 os.makedirs(AUDIO_FOLDER, exist_ok=True)
 
-# ---------- LOAD WHISPER ----------
-model = whisper.load_model("base")
 
 # ---------- DATABASE ----------
 def init_db():
@@ -159,8 +157,12 @@ def upload_audio():
 
     # ---------- TRANSCRIBE ----------
     try:
+        import whisper
+        model = whisper.load_model("base")
+
         result = model.transcribe(path)
         text = result["text"].strip().lower()
+    
 
         # ---------- AI CLEANUP ----------
         if text:
@@ -232,5 +234,5 @@ def get_notes():
 if __name__ == "__main__":
        import os
 
-port = int(os.environ.get("PORT", 5001))
-app.run(host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port)
