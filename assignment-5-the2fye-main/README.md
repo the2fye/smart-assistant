@@ -5,7 +5,7 @@
 ---
 
 ## 🌐 Live Deployment Link
-**Dashboard URL:** https://imbecile-spew-crusader.ngrok-free.dev/?key=1234
+**Dashboard URL:** https://smart-assistant-app3.onrender.com/?key=1234
 
 > This link is publicly accessible and used for grading. Authorization is required via API key.
 
